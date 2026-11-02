@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerUI from 'swagger-ui-express';
 import './config/db.js';
 
 //Routes
@@ -12,6 +13,8 @@ const port = 3000;
 //middleware
 
 app.use(bodyParser.json());
+
+app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use('/api', authRouter);
 app.use('/api', taskRouter);
